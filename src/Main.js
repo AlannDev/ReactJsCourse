@@ -1,6 +1,10 @@
+import ItemListContainer from "./ItemListContainer";
+
 const Main = () => {
     return (
-        <main>Main</main>
+        <main>
+            <ItemListContainer/>
+        </main>
     )
 }
 
