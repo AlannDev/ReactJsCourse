@@ -1,82 +1,74 @@
 import { useEffect, useState } from "react";
-import ItemCount from "./ItemCount"
 import ItemList from "./ItemList";
 import prodsBD from "../../assets/products.json"
-
-// const prodsBD = [
-//     {
-//         "id": 1,
-//         "name": "Camisa",
-//         "price": 1000,
-//         "categories": [
-//             "camisas",
-//             "remeras"
-//         ],
-//         "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
-//         "description": "Camisa de algodon"
-//     },
-//     {
-//         "id": 2,
-//         "name": "Pantalon",
-//         "price": 1600,
-//         "categories": [
-//             "pantalones",
-//             "jeans"
-//         ],
-//         "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
-//         "description": "Pantalon de algodon"
-//     },
-//     {
-//         "id": 3,
-//         "name": "Zapatos",
-//         "price": 3000,
-//         "categories": [
-//             "zapatos",
-//             "sandalias"
-//         ],
-//         "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
-//         "description": "Zapatos de algodon"
-//     }
-// ]
+import { toast, ToastContainer } from "react-toastify"
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = (props) => {
 
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
+    const {nameCategory} = useParams()
 
     useEffect(() => {
+        toast.info("Cargando Productos...")
 
-        // const allProducts = fetch("https://fakestoreapi.com/products")
-        // allProducts.then((res) => {
-        //     return res.json()
+        if(nameCategory == undefined)
+        {
+            const promesa = new Promise((res) => {
+                setTimeout(()=>{
+                    res(prodsBD)
+                },1000)
+            })
+            .then(() => {
+                setProducts(prodsBD)
+                setLoading(false)
+                toast.dismiss()
+                toast.success("Productos cargados!")
+            })
+        }
+        else {
+            const promesa = new Promise((res) => {
+                console.log("Pidiendo Productos por categoria...")
+                setTimeout(()=>{
+                    res(prodsBD)
+                },1000)
+            })
+            .then(() => {
+                setProducts(prodsBD.filter((prod) => {
+                    return prod.categories.includes(nameCategory)
+                }))
+                setLoading(false)
+                toast.dismiss()
+                toast.success("Productos cargados!")
+            })
+        }
+
+        // const promesa = new Promise((res, rej) => {
+        //     console.log("Pidiendo Productos...")
+        //     setTimeout(()=>{
+        //         res(prodsBD)
+        //     },2000)
         // })
-        // .then((json) => {
-        //     console.log(json)
-        //     setProducts(json)
+        // promesa.then(() => {
+        //     console.log("Recibiendo Productos...")
+        //     console.log(prodsBD)
+        //     if(nameCategory == undefined){
+        //         setProducts(prodsBD)
+        //     }else {
+        //         setProducts(prodsBD.filter((prod) => {
+        //             return prod.categories.includes(nameCategory)
+        //         }))
+        //     }
+        //     setLoading(false)
+        //     toast.dismiss()
+        //     toast.success("Productos cargados!")
         // })
-        // .catch((err) => {
-        //     console.log(err)
+        // .catch((error) => {
+        //     console.log("Error")
         // })
 
-        const promesa = new Promise((res, rej) => {
-            console.log("Pidiendo Productos...")
-            setTimeout(()=>{
-                res(prodsBD)
-            },2000)
-        })
-
-        promesa
-        .then(() => {
-            console.log("Recibiendo Productos...")
-            console.log(prodsBD)
-            setProducts(prodsBD)
-            setLoading(false)
-        })
-        .catch((error) => {
-            console.log("Error")
-        })
-
-    }, [])
+    }, [nameCategory])
 
     const onAdd = () => { };
 
@@ -87,17 +79,6 @@ const ItemListContainer = (props) => {
             <ItemList products={products} />
         )
     }
-
-    // return (
-    //     <div>
-    //         {/* <p>{props.greeting}</p> */}
-    //         {/* <ItemCount stock={50} init={1} onAdd={onAdd}/> */}
-    //         {/* <ul>
-    //             {productos.map((prod, index) => {
-    //                 return <li key={prod.id}>{prod.nombre}</li>
-    //             })}
-    //         </ul> */}
-    //     </div>
-    // )
 }
+
 export default ItemListContainer

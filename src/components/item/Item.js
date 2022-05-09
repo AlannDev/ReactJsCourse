@@ -1,11 +1,11 @@
-//import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Item = ({product}) => {
 
-    //const navigate = useNavigate()
-
+    const navigate = useNavigate()
+    console.log("log from item")
     const handleClick = () => {
-        //navigate(`/producto/${item.id}`)
+        navigate(`/product/${product.id}`)
     }
     return (
         <article className="card">

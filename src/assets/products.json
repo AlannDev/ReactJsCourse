@@ -5,7 +5,8 @@
         "price": 1000,
         "categories": [
             "camisas",
-            "remeras"
+            "remeras",
+            "ropa"
         ],
         "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
         "description": "Camisa de algodon"
@@ -16,7 +17,8 @@
         "price": 1600,
         "categories": [
             "pantalones",
-            "jeans"
+            "jeans",
+            "ropa"
         ],
         "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
         "description": "Pantalon de algodon"
@@ -27,9 +29,30 @@
         "price": 3000,
         "categories": [
             "zapatos",
-            "sandalias"
+            "sandalias",
+            "ropa"
         ],
         "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
         "description": "Zapatos de algodon"
+    },
+    {
+        "id": 4,
+        "name": "Led TV",
+        "price": 30000,
+        "categories": [
+            "electro"
+        ],
+        "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
+        "description": "Televisor 32pulgadas"
+    },
+    {
+        "id": 5,
+        "name": "Disco solido",
+        "price": 10000,
+        "categories": [
+            "tecno"
+        ],
+        "image": "https://www.mismarcas.com/wp-content/uploads/2019/10/camiseta-mismarcas-nike-air-max-1-negra-1.jpg",
+        "description": "disco estado solido 240gb"
     }
 ]
