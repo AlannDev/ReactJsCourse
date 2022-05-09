@@ -1,6 +1,6 @@
 const CartWidget = () => {
     return (
-        <img className="cartWidget" src="./shopping-cart.png" alt="carrito-logo"></img>
+        <img className="cartWidget" src={require("../assets/shopping-cart.png")} alt="carrito-logo"></img>
     )
 }
 

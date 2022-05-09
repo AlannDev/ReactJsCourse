@@ -6,7 +6,7 @@ const saludo = "Saludos desde el Main"
 const Main = () => {
     return (
         <main>
-            <ItemListContainer greeting={saludo}/>
+            {/* <ItemListContainer greeting={saludo}/> */}
             <ItemDetailContainer/>
         </main>
     )
