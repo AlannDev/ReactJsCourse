@@ -9,7 +9,6 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState({})
     const {id} = useParams()
-    const idFilterProduct = 2
 
     useEffect(() => {
         toast.info("Cargando Productos...")

@@ -3,6 +3,7 @@
         "id": 1,
         "name": "Camisa",
         "price": 1000,
+        "stock": 130,
         "categories": [
             "camisas",
             "remeras",
@@ -15,6 +16,7 @@
         "id": 2,
         "name": "Pantalon",
         "price": 1600,
+        "stock": 130,
         "categories": [
             "pantalones",
             "jeans",
@@ -27,6 +29,7 @@
         "id": 3,
         "name": "Zapatos",
         "price": 3000,
+        "stock": 130,
         "categories": [
             "zapatos",
             "sandalias",
@@ -39,6 +42,7 @@
         "id": 4,
         "name": "Led TV",
         "price": 30000,
+        "stock": 130,
         "categories": [
             "electro"
         ],
@@ -49,6 +53,7 @@
         "id": 5,
         "name": "Disco solido",
         "price": 10000,
+        "stock": 130,
         "categories": [
             "tecno"
         ],
