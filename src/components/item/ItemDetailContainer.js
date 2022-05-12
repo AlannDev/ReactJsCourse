@@ -13,14 +13,11 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         toast.info("Cargando Productos...")
         const promesa = new Promise((res, rej) => {
-            console.log("Pidiendo Productos...")
             setTimeout(()=>{
                 res(prodsBD)
             },2000)
         })
         .then(() => {
-            console.log("Recibiendo Productos...")
-            console.log(prodsBD)
             setProduct(prodsBD.find((prod) => prod.id == id))
             setLoading(false)
             toast.dismiss()

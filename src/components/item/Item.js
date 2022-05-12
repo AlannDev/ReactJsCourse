@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 const Item = ({product}) => {
 
     const navigate = useNavigate()
-    console.log("log from item")
     const handleClick = () => {
         navigate(`/product/${product.id}`)
     }

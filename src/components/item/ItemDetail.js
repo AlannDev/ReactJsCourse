@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ItemCount from './ItemCount'
+import { cartContext } from "../../context/cartContext"
 
 const ItemDetail = ({ product }) => {
 
     const [cantidadItemsCarrito, setCantidadItemsCarrito] = useState(0)
     const [renderCart, setRenderCart] = useState(false)
 
+    const {context} = useContext(cartContext)
+
     const onAdd = (e) => {
         setCantidadItemsCarrito(e)
         setRenderCart(true)
+
+        //additem(product)
+    }
+
+    const addItemCarrito = () => {
+        context.additem(product)
     }
 
     useEffect(() =>{
@@ -30,7 +39,7 @@ const ItemDetail = ({ product }) => {
     else {
         return(
             <div>
-                <Link to="/cart"> <button>Finalizar compra</button></Link>
+                <Link to="/cart"> <button onClick={addItemCarrito}>Finalizar compra</button></Link>
                 <p>cantidad: {cantidadItemsCarrito} </p>
             </div>
         )
