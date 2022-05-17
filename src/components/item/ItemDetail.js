@@ -7,18 +7,24 @@ const ItemDetail = ({ product }) => {
 
     const [cantidadItemsCarrito, setCantidadItemsCarrito] = useState(0)
     const [renderCart, setRenderCart] = useState(false)
-
-    const {context} = useContext(cartContext)
+    const [prodUpdated, setProdUpdated] = useState(product)
+ 
+    const context = useContext(cartContext)
 
     const onAdd = (e) => {
         setCantidadItemsCarrito(e)
         setRenderCart(true)
-
-        //additem(product)
+        setProdUpdated(prodOld => ({
+            prod: {
+                ...prodOld,
+                quantity: e
+            }
+        }))
     }
 
     const addItemCarrito = () => {
-        context.additem(product)
+        console.log("log addItemCarrtio itemDetail.js")
+        context.addItem(prodUpdated)
     }
 
     useEffect(() =>{
@@ -33,6 +39,7 @@ const ItemDetail = ({ product }) => {
                 <p>Precio : ${product.price}</p>
                 <ItemCount init={1} stock={product.stock} onAdd={onAdd} />
                 {/* <button>terminar mi compra</button> */}
+                {/* <button onClick={addItemCarrito}>Test context</button> */}
             </div>
         )
     }

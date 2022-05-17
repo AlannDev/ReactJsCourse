@@ -4,12 +4,16 @@ import { cartContext } from "../context/cartContext"
 
 const CartWidget = () => {
 
-    const {cart, addItem, clearCart, removeItem} = useContext(cartContext)
-    console.log(cart, addItem, clearCart, removeItem)
+    const cntxt = useContext(cartContext)
+
+    const totalItems = cntxt.cart.reduce((total, currentValue) => total = parseInt(total) + parseInt(currentValue.quantity),0);
+    console.log(totalItems)
+    console.log("log form cardwidget.js")
 
     return (
         <Link to="/cart">
             <img className="cartWidget" src={require("../assets/shopping-cart.png")} alt="carrito-logo"></img>
+            <span>{totalItems}</span>
         </Link>
     )
 }
