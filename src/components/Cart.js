@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { cartContext } from "../context/cartContext"
+import { db } from "../api/firebaseApi"
 
 const Cart = () => {
 
@@ -8,18 +9,22 @@ const Cart = () => {
     console.log(context)
 
     return (
-        <div>Detalle Carrito...
-            {context.cart.map(prod => {
+        <div>
+            {context.cart.map(prod => { return (
                 <div>
-                    <p>{prod.name}</p>
+                    <h1>{prod.name}</h1>
                     <h1>Detalle del producto</h1>
                     <p>{prod.description}</p>
-                    {/* <img src="https://via.placeholder.com/300" alt="" /> */}
+                    <img src="https://via.placeholder.com/300" alt="" />
                     <p>Precio : ${prod.price}</p>
-                    <p>Cantidad: {prod.quantity}</p>
-                    <p>Subtotal: ${prod.price * prod.quantity}</p>
-                </div>
+                    <p>Cantidad : {prod.quantity}</p>
+                    <p>Subtotal : ${prod.price * prod.quantity}</p>
+                    {/* <button onClick={context.removeItem(prod.id)}>Eliminar producto</button> */}
+                </div>)
             })}
+            <div>
+                <button onClick={context.clear}>Vaciar carrito</button>
+            </div>
         </div>
     )
 }

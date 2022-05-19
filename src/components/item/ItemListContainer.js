@@ -3,6 +3,8 @@ import ItemList from "./ItemList";
 import prodsBD from "../../assets/products.json"
 import { toast } from "react-toastify"
 import { useParams } from "react-router-dom";
+import { db } from "../../api/firebaseApi";
+import { collection, getDoc, doc, getDocs, addDoc, query } from "firebase/firestore"
 
 const ItemListContainer = (props) => {
 
@@ -11,35 +13,55 @@ const ItemListContainer = (props) => {
     const {nameCategory} = useParams()
 
     useEffect(() => {
+
+        const prodsCollection = collection(db, "products")
         toast.info("Cargando Productos...")
 
         if(nameCategory == undefined)
         {
-            const promesa = new Promise((res) => {
-                setTimeout(()=>{
-                    res(prodsBD)
-                },1000)
-            })
-            .then(() => {
-                setProducts(prodsBD)
+            getDocs(prodsCollection)
+            .then((result) => {
+                const prodsFirebase = result.docs.map((doc => {
+                    // const prodWithId = {
+                    //     ...doc.data(),
+                    //     id: doc.id
+                    // }
+                    const prodWithId = doc.data()
+                    prodWithId.id = doc.id
+                    
+                    return prodWithId
+                }))
+                setProducts(prodsFirebase)
                 setLoading(false)
                 toast.dismiss()
                 toast.success("Productos cargados!")
+            })
+            .catch((err) => {
+                toast.error(err)
+            })
+            .finally(() => {
+
             })
         }
         else {
-            const promesa = new Promise((res) => {
-                setTimeout(()=>{
-                    res(prodsBD)
-                },1000)
-            })
-            .then(() => {
-                setProducts(prodsBD.filter((prod) => {
-                    return prod.categories.includes(nameCategory)
+            getDocs(prodsCollection)
+            .then((result) => {
+                const prodsFirebase = result.docs.map((doc => {
+                    const prodWithId = doc.data()
+                    prodWithId.id = doc.id
+                    
+                    return prodWithId
                 }))
+                setProducts(prodsFirebase.filter((prod) => { return prod.categories.includes(nameCategory) }))
                 setLoading(false)
                 toast.dismiss()
                 toast.success("Productos cargados!")
+            })
+            .catch((err) => {
+                toast.error(err)
+            })
+            .finally(() => {
+
             })
         }
 
