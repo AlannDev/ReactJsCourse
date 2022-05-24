@@ -28,6 +28,7 @@ const Cart = () => {
         addDoc(ordersCollection, order)
         .then((res)=>{
             console.log(res)
+            setIdOrder(res.id)
         })
         .catch((err)=>{
             console.log(err)
