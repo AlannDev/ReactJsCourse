@@ -7,24 +7,26 @@ const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]) 
 
     const addItem = (prod) => {
-        console.log(prod)
         if(isInCart(prod.id)){
-            setCart([...cart, {...prod, quantity: prod.quantity + 10}])
-            console.log(cart)
+            const products = [...cart]
+            for (const item of products){
+                if (item.id === prod.id){
+                    item.quantity = item.quantity + prod.quantity;
+                }
+            }
+            setCart(products)
         }
         else {
             setCart([...cart, prod])
-            console.log(cart)
         }
     }
 
     const isInCart = (id) => {
-        return cart.find(prod => prod.id == id);
+        return cart.find(prod => prod.id === id);
     }
 
     const removeItem = (id) => {
-        const updatedCart = [...cart].map(item => item.id != id);
-        setCart(updatedCart);
+        setCart(cart.filter(producto => producto.id !== id))
     }
 
     const clear = () => {

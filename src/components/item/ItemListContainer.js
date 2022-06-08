@@ -22,13 +22,10 @@ const ItemListContainer = (props) => {
             getDocs(prodsCollection)
             .then((result) => {
                 const prodsFirebase = result.docs.map((doc => {
-                    // const prodWithId = {
-                    //     ...doc.data(),
-                    //     id: doc.id
-                    // }
-                    const prodWithId = doc.data()
-                    prodWithId.id = doc.id
-                    
+                    const prodWithId = {
+                        ...doc.data(),
+                        id: doc.id
+                    }
                     return prodWithId
                 }))
                 setProducts(prodsFirebase)
@@ -47,7 +44,6 @@ const ItemListContainer = (props) => {
                 const prodsFirebase = result.docs.map((doc => {
                     const prodWithId = doc.data()
                     prodWithId.id = doc.id
-                    
                     return prodWithId
                 }))
                 setProducts(prodsFirebase)

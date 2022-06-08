@@ -12,7 +12,7 @@ const ItemCount = ({init, stock, onAdd}) => {
     }
 
     const removeItem = () => {
-        if(contador > 0) {
+        if(contador > 1) {
             setContador(contador - 1)
         }
     }

@@ -12,18 +12,14 @@ const ItemDetail = ({ product }) => {
     const context = useContext(cartContext)
 
     const onAdd = (e) => {
-        setCantidadItemsCarrito(e)
         setRenderCart(true)
-        setProdUpdated(prodOld => ({
-            prod: {
-                ...prodOld,
-                quantity: e
-            }
-        }))
+        const newProd = {...product}
+        newProd.quantity = e
+        setProdUpdated(newProd)
+        setCantidadItemsCarrito(e)
     }
 
     const addItemCarrito = () => {
-        console.log("log addItemCarrtio itemDetail.js")
         context.addItem(prodUpdated)
     }
 
@@ -38,8 +34,6 @@ const ItemDetail = ({ product }) => {
                 <img src="https://via.placeholder.com/300" alt="" />
                 <p>Precio : ${product.price}</p>
                 <ItemCount init={1} stock={product.stock} onAdd={onAdd} />
-                {/* <button>terminar mi compra</button> */}
-                {/* <button onClick={addItemCarrito}>Test context</button> */}
             </div>
         )
     }
